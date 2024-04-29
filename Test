@@ -1,0 +1,304 @@
+-- Load the Orion Library
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+-- Create a window
+local Window = OrionLib:MakeWindow({
+    Name = "Esta Hub - BakerBoi384",
+    SaveConfig = true,
+    ConfigFolder = "MyComplexScriptConfig"
+})
+
+-- Create tabs
+local Tab1 = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Tab2 = Window:MakeTab({
+    Name = "Target",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Tab3 = Window:MakeTab({
+    Name = "Player",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Tab4 = Window:MakeTab({
+    Name = "Lock/Esp",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Tab5 = Window:MakeTab({
+    Name = "Visual",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Tab6 = Window:MakeTab({
+    Name = "Toggles",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Tab7 = Window:MakeTab({
+    Name = "Misc",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+-- Add sections to Tab One
+local Section1_Tab1 = Tab1:AddSection({
+    Name = "Aimbot"
+})
+
+local Section2_Tab1 = Tab1:AddSection({
+    Name = "ESP"
+})
+
+local Section3_Tab1 = Tab1:AddSection({
+    Name = "Weapon Modifiers"
+})
+
+local Section4_Tab1 = Tab1:AddSection({
+    Name = "Player Teleportation"
+})
+
+local Section5_Tab1 = Tab1:AddSection({
+    Name = "GUI Customization"
+})
+
+local Section6_Tab1 = Tab1:AddSection({
+    Name = "Anti-Cheat Bypass"
+})
+
+local Section7_Tab1 = Tab1:AddSection({
+    Name = "Miscellaneous Features"
+})
+
+-- Define a variable to hold the loaded No Clip script
+local noClipScript
+
+-- Function to reset player's collision properties
+local function ResetCollision()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if character then
+        for _, part in ipairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = true
+            end
+        end
+    end
+end
+
+-- Add UI elements to Tab One sections
+-- Aimbot Section
+Section1_Tab1:AddToggle({
+    Name = "Aimbot Toggle",
+    Default = false,
+    Callback = function(Value)
+        -- Add code here to toggle aimbot functionality
+    end
+})
+
+Section1_Tab1:AddSlider({
+    Name = "Aimbot Strength",
+    Min = 0,
+    Max = 100,
+    Default = 50,
+    Callback = function(Value)
+        -- Add code here to adjust aimbot strength
+    end
+})
+
+-- ESP Section
+Section2_Tab1:AddToggle({
+    Name = "ESP Toggle",
+    Default = false,
+    Callback = function(Value)
+        -- Add code here to toggle ESP functionality
+    end
+})
+
+-- Weapon Modifiers Section
+Section3_Tab1:AddToggle({
+    Name = "Recoil Reduction",
+    Default = false,
+    Callback = function(Value)
+        -- Add code here to toggle recoil reduction
+    end
+})
+
+Section3_Tab1:AddSlider({
+    Name = "Fire Rate Adjustment",
+    Min = 0,
+    Max = 100,
+    Default = 50,
+    Callback = function(Value)
+        -- Add code here to adjust fire rate
+    end
+})
+
+-- Player Teleportation Section
+Section4_Tab1:AddButton({
+    Name = "Teleport to Player",
+    Callback = function()
+        -- Add code here to teleport the player to another player
+    end
+})
+
+-- GUI Customization Section
+Section5_Tab1:AddColorpicker({
+    Name = "GUI Color",
+    Default = Color3.fromRGB(255, 255, 255),
+    Callback = function(Value)
+        -- Add code here to customize GUI colors
+    end
+})
+
+-- Anti-Cheat Bypass Section
+Section6_Tab1:AddToggle({
+    Name = "Anti-Cheat Bypass",
+    Default = false,
+    Callback = function(Value)
+        -- Add code here to bypass anti-cheat measures
+    end
+})
+
+-- Miscellaneous Features Section
+Section7_Tab1:AddToggle({
+    Name = "Fly",
+    Default = false,
+    Callback = function(Value)
+        -- Add code here to toggle speed hack
+    end
+})
+
+-- Add a toggle for No Clip to the appropriate section
+Section7_Tab1:AddToggle({
+    Name = "No Clip",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Load and execute the script for No Clip
+            noClipScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/BakerBo1/No-clip/main/No%20clip", true))
+            if noClipScript then
+                noClipScript()
+            else
+                warn("Failed to load No Clip script")
+            end
+        else
+            -- Disable the loaded No Clip script
+            noClipScript = nil
+            -- Reset player's collision properties
+            ResetCollision()
+        end
+    end
+})
+
+-- Add a toggle for Chatspy to the appropriate section
+Section7_Tab1:AddToggle({
+    Name = "Chatspy",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Load and execute the Chatspy script
+            local scriptUrl = "https://pastebin.com/raw/nzXicwc1"
+            loadstring(game:HttpGet(scriptUrl, true))()
+            print("Chatspy script executed")
+        else
+            -- You can add code here to revert any changes made by the Chatspy script
+        end
+    end
+})
+
+-- Add sections to Tab Three (Player)
+local Section1_Tab3 = Tab3:AddSection({
+    Name = "Speed"
+})
+
+-- Add UI elements to Player Settings section
+Section1_Tab3:AddToggle({
+    Name = "Speed",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Load and execute the Speed script
+            local scriptUrl = "https://raw.githubusercontent.com/BakerBo1/Speed-ESTA/main/Esta%20speed.lua"
+            loadstring(game:HttpGet(scriptUrl, true))()
+            print("Speed script executed")
+        else
+            -- Add code here to disable the loaded Speed script if necessary
+        end
+    end
+})
+
+Section1_Tab3:AddToggle({
+    Name = "Super Speed",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Load and execute the Super Speed script
+            local scriptUrl = "https://raw.githubusercontent.com/BakerBo1/Super-Speed-ESTA-/main/Super%20Speed%20Esta.lua"
+            loadstring(game:HttpGet(scriptUrl, true))()
+            print("Super Speed script executed")
+        else
+            -- Add code here to disable the loaded Super Speed script if necessary
+        end
+    end
+})
+
+-- Add sections to Tab Four (Lock/Esp)
+local Section1_Tab4 = Tab4:AddSection({
+    Name = "Locks"
+})
+
+local Section2_Tab4 = Tab4:AddSection({
+    Name = "Esp"
+})
+
+-- Define a variable to hold the loaded script
+local loadedScript
+
+-- Function to load and execute the provided script
+local function loadScript()
+    loadedScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/k0nkx/Aura-x-skid-ez-remake-by-k0nkx/main/Sigma.lua", true))
+    if loadedScript then
+        loadedScript()
+    else
+        warn("Failed to load the script")
+    end
+end
+
+-- Add UI elements to Locks section
+Section1_Tab4:AddToggle({
+    Name = "Aura x skid ez remake by k0nkx",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Load and execute the provided script
+            loadScript()
+        else
+            -- Disable the loaded script
+            loadedScript = nil
+        end
+    end
+})
+
+-- Add UI elements to ESP section
+Section2_Tab4:AddToggle({
+    Name = "ESP Toggle",
+    Default = false,
+    Callback = function(Value)
+        -- Add your code here to toggle ESP functionality
+    end
+})
+
+-- Initialize the Orion Library
+OrionLib:Init()
+
